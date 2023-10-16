@@ -1,56 +1,56 @@
 create database quan_li_vat_lieu;
 use quan_li_vat_lieu;
 create table NHACUNGCAP(
-MaNCC int primary key auto_increment,
-TenNCC varchar(50) NOT NULL,
-DiaChi varchar(50) NOT NULL
+mncc int primary key auto_increment,
+tenncc varchar(50) NOT NULL,
+diachi varchar(50) NOT NULL
 );
 create table DONDH(
-SoDH int primary key auto_increment,
-NgayDH varchar(50),
-MaNCC int,
-foreign key(MaNCC)references NHACUNGCAP (MaNCC)
+sodh int primary key auto_increment,
+ngaydh varchar(50),
+mncc int,
+foreign key(mncc)references NHACUNGCAP (mncc)
 );
 create table SDT(
-MaNCC int,
-SDT varchar(50),
-primary key(MaNCC,SDT),
-foreign key(MaNCC)references NHACUNGCAP (MaNCC)
+mncc int,
+sdt varchar(50),
+primary key(mncc,sdt),
+foreign key(mncc)references NHACUNGCAP (mncc)
 );
 
 create table VATTU(
-MaVTU int primary key auto_increment,
-TenVTU varchar(50) NOT NULL
+mavtu int primary key auto_increment,
+tenvtu varchar(50) NOT NULL
 );
 create table CT_DONDATHANG(
-MaVTU int,
-SoDH int ,
-foreign key(MaVTU)references VATTU (MaVTU),
-foreign key(SoDH)references DONDH (SoDH)
+mavtu int,
+sodh int ,
+foreign key(mavtu)references VATTU (mavtu),
+foreign key(sodh)references DONDH (sodh)
 );
 create table PHIEUXUAT(
-SoPx int primary key auto_increment,
-NgayXuat date
+sopx int primary key auto_increment,
+ngayxuat date
 );
 create table CT_PHIEUXUAT(
-DGXuat varchar(50) NOT NULL,
-SLXuat int check(SLXuat>0),
-MaVTU int,
-SoPx int,
-foreign key(MaVTU)references VATTU(MaVTU),
-foreign key(SoPx)references PHIEUXUAT(SoPx)
+dgxuat varchar(50) NOT NULL,
+slxuat int check(SLXuat>0),
+mavtu int,
+sopx int,
+foreign key(mavtu)references VATTU(mavtu),
+foreign key(sopx)references PHIEUXUAT(sopx)
 );
 create table PHIEUNHAP(
-SoPN int primary key auto_increment,
-NgayNhap date
+sopn int primary key auto_increment,
+ngaynhap date
 );
 create table CT_PHIEUNHAP(
-MaVTU int,
-SoPN int,
-DGNhap varchar(50) NOT NULL,
-SLNhap int check(SLNhap>0),
-foreign key(SoPN)references PHIEUNHAP (SoPN),
-foreign key(MaVTU)references VATTU(MaVTU)
+mavtu int,
+sopn int,
+dgnhap varchar(50) NOT NULL,
+slnhap int check(SLNhap>0),
+foreign key(sopn)references PHIEUNHAP (sopn),
+foreign key(mavtu)references VATTU(mavtu)
 );
 
 

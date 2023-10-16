@@ -1,7 +1,7 @@
 create database quan_li_ban_hang;
 use quan_li_ban_hang;
 create table customer(
-cId int primary key auto_increment,
+cid int primary key auto_increment,
 cName varchar(50),
 cAge int
 );
