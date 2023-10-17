@@ -1,5 +1,5 @@
-	CREATE database quanlisinhvien;
-	use quanlisinhvien;
+CREATE database quanlisinhvien1;
+	use quanlisinhvien1;
 	CREATE TABLE class (
 		class_id INT KEY AUTO_INCREMENT,
 		class_name VARCHAR(45) NOT NULL,
@@ -57,28 +57,3 @@
 	VALUES (1, 1, 8, 1),
 	 (1, 2, 10, 2),
 	 (2, 1, 12, 1);
-	 
-	 select *from  student 
-	 where student_name like 'H%';
-	 
-	 select *from class
-	 where
-	 month(class_start)=12;
-	 
-	 select * from subject 
-	 where subject_credit in (3,4,5);
-	--  
-	--  set sql_safe_updates=0;
-	--  update student 
-	--  set class_id =2 
-	--  where student_name = 'Hung';
-	 
-	SELECT
-		student.student_name, mark.mark, subject.subject_name
-	FROM
-		student
-			INNER JOIN
-		mark ON student.student_id = mark.student_id
-			INNER JOIN
-		subject ON subject.subject_id = mark.subject_id
-	ORDER BY mark.mark DESC , student.student_name ASC;
