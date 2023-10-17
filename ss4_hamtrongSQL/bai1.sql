@@ -57,3 +57,31 @@ CREATE database quanlisinhvien1;
 	VALUES (1, 1, 8, 1),
 	 (1, 2, 10, 2),
 	 (2, 1, 12, 1);
+SELECT 
+    *
+FROM
+    subject
+WHERE
+    subject_credit = (SELECT 
+            MAX(subject_credit)
+        FROM
+            subject);
+            
+SELECT 
+    sj.subject_name, MAX(Mark)
+FROM
+    mark m
+        JOIN
+    subject sj ON m.subject_id = sj.subject_id
+GROUP BY sj.subject_id;
+
+
+SELECT 
+    s.*, AVG(Mark) AS 'Diem thi trung binh'
+FROM
+    student s
+        JOIN
+    mark m ON s.student_id = m.student_id
+GROUP BY s.student_id;
+            
+     
