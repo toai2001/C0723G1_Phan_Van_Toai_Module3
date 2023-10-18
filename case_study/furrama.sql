@@ -232,6 +232,22 @@ WHERE
             '%Y') BETWEEN 18 AND 50
         AND dia_chi LIKE '%Đà Nẵng'
         OR dia_chi LIKE '%Quảng Trị';
+--         - Hàm DATEDIFF sẽ tính số ngày khác nhau giữa ngày hiện tại (NOW) và ngày sinh của khách hàng. 
+-- - Hàm FROM_DAYS sẽ tính ra số ngày tương ứng với số ngày khác nhau được tính bằng hàm DATEDIFF ở trên. Ví dụ, nếu số ngày khác nhau là 10000 ngày thì hàm FROM_DAYS sẽ trả về ngày "1973-03-07" 
+-- (10000 ngày sau ngày "0000-00-00").
+-- - Hàm DATE_FORMAT sẽ định dạng lại giá trị ngày tháng trả về từ hàm FROM_DAYS theo định dạng "%Y" (năm 4 chữ số).
+
+-- Ví dụ, giả sử ngày sinh của một khách hàng là '1990-10-20' và ngày hiện tại là '2021-09-01', khi đưa vào đoạn mã trên, thì:
+
+-- - Hàm DATEDIFF sẽ tính số ngày khác nhau giữa '2021-09-01' và '1990-10-20' là 11323 ngày.
+-- - Hàm FROM_DAYS sẽ trả về ngày "1959-10-23" tương ứng với 11323 ngày.
+-- - Hàm DATE_FORMAT sẽ định dạng lại ngày "1959-10-23" theo định dạng "%Y" và trả về giá trị "1959", tức là năm của khách hàng là 1959.
+
+
+
+
+
+
 -- Đếm xem tương ứng với mỗi khách hàng đã từng đặt phòng bao nhiêu
 -- lần. Kết quả hiển thị được sắp xếp tăng dần theo số lần đặt phòng của
 -- khách hàng. Chỉ đếm những khách hàng nào có Tên loại khách hàng là
