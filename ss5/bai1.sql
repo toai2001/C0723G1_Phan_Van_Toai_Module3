@@ -47,17 +47,17 @@ DROP VIEW product_views;
 DELIMITER //
 
 -- Hien thi danh sach
-CREATE PROCEDURE findAllProduct()
+CREATE PROCEDURE find_all_product()
 BEGIN
   SELECT * FROM products;
 END //
 DELIMITER ;
 
-CALL findAllProduct();
+CALL find_all_product();
 
 --  Them san pham moi
 DELIMITER //
-CREATE PROCEDURE addNewProduct(
+CREATE PROCEDURE add_new_product(
 	product_code VARCHAR(50),
     product_name VARCHAR(50),
     product_price DOUBLE,
@@ -70,11 +70,11 @@ VALUES(product_code,product_name,product_price,product_amount,product_descriptio
 END //
 DELIMITER ;
 
-CALL addNewProduct('P004','Vay dạo phố','250000','0','Vay dạo phố thời trang và thoải mái',0);
+CALL add_new_product('P004','Vay dạo phố','250000','0','Vay dạo phố thời trang và thoải mái',0);
 
 -- Update san pham
 DELIMITER //
-CREATE PROCEDURE editProduct(
+CREATE PROCEDURE edit_product(
 	product_id int,
 	product_code VARCHAR(50),
     product_name VARCHAR(50),
@@ -95,11 +95,11 @@ BEGIN
 END //
 DELIMITER ;
 
-CALL editProduct(4,'P004','Vay xinh dạo phố','250000','0','Vay dạo phố thời trang và thoải mái',0);
+CALL edit_product(4,'P004','Vay xinh dạo phố','250000','0','Vay dạo phố thời trang và thoải mái',0);
 
 -- Xoa san pham theo id
 DELIMITER //
-CREATE PROCEDURE deleteProduct(
+CREATE PROCEDURE delete_product(
 	product_id int)
 BEGIN
 	DELETE FROM products
@@ -107,4 +107,4 @@ BEGIN
 END //
 DELIMITER ;
 
-CALL deleteProduct(4);
+CALL delete_product(4);

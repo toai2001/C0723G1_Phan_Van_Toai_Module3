@@ -232,12 +232,12 @@ WHERE
             '%Y') BETWEEN 18 AND 50
         AND dia_chi LIKE '%Đà Nẵng'
         OR dia_chi LIKE '%Quảng Trị';
---         - Hàm DATEDIFF sẽ tính số ngày khác nhau giữa ngày hiện tại (NOW) và ngày sinh của khách hàng. 
+--   - Hàm DATEDIFF sẽ tính số ngày khác nhau giữa ngày hiện tại (NOW) và ngày sinh của khách hàng. 
 -- - Hàm FROM_DAYS sẽ tính ra số ngày tương ứng với số ngày khác nhau được tính bằng hàm DATEDIFF ở trên. Ví dụ, nếu số ngày khác nhau là 10000 ngày thì hàm FROM_DAYS sẽ trả về ngày "1973-03-07" 
 -- (10000 ngày sau ngày "0000-00-00").
 -- - Hàm DATE_FORMAT sẽ định dạng lại giá trị ngày tháng trả về từ hàm FROM_DAYS theo định dạng "%Y" (năm 4 chữ số).
 
--- Ví dụ, giả sử ngày sinh của một khách hàng là '1990-10-20' và ngày hiện tại là '2021-09-01', khi đưa vào đoạn mã trên, thì:
+-- Ví dụ, giả sử ngày sinh của một khách hàng là '1990-10-20' và ngày hiện tại là '202	1-09-01', khi đưa vào đoạn mã trên, thì:
 
 -- - Hàm DATEDIFF sẽ tính số ngày khác nhau giữa '2021-09-01' và '1990-10-20' là 11323 ngày.
 -- - Hàm FROM_DAYS sẽ trả về ngày "1959-10-23" tương ứng với 11323 ngày.
@@ -309,6 +309,8 @@ select distinct ma_dich_vu
 from hop_dong
 where ngay_lam_hop_dong between '2021-01-01' and '2021-03-31');
 
+
+
 -- Hiển   thị   thông   tin  ma_dich_vu,   ten_dich_vu,   dien_tich,
 -- so_nguoi_toi_da,   chi_phi_thue,   ten_loai_dich_vu  của tất cả các loại
 -- dịch vụ đã từng được khách hàng đặt phòng  trong   năm   2020  nhưng
@@ -359,11 +361,15 @@ WHERE ma_khach_hang IN (
 -- Thực hiện thống kê doanh thu theo tháng, nghĩa là tương ứng với mỗi
 -- tháng trong năm 2021 thì sẽ có bao nhiêu khách hàng thực hiện đặt
 -- phòng.
-select month(ngay_lam_hop_dong) `month`, count(ma_hop_dong)  so_luong
-from hop_dong
-where year(ngay_lam_hop_dong) = '2021'
-group by month
-order by month;
+SELECT 
+    MONTH(ngay_lam_hop_dong) `month`,
+    COUNT(ma_hop_dong) so_luong
+FROM
+    hop_dong
+WHERE
+    YEAR(ngay_lam_hop_dong) = '2021'
+GROUP BY month
+ORDER BY month;
 -- Hiển thị thông tin tương ứng với từng hợp đồng thì đã sử dụng bao nhiêu
 -- dịch   vụ   đi   kèm.   Kết   quả   hiển   thị   bao   gồm  ma_hop_dong,
 -- ngay_lam_hop_dong,   ngay_ket_thuc,   tien_dat_coc,
@@ -377,7 +383,7 @@ SELECT
     SUM(hdct.so_luong)
 FROM
     hop_dong hd
-        LEFT JOIN
+         JOIN
     hop_dong_chi_tiet hdct ON hd.ma_hop_dong = hdct.ma_hop_dong
 GROUP BY hd.ma_hop_dong
 ;
@@ -512,3 +518,5 @@ WHERE
 GROUP BY hd.ma_nhan_vien
 HAVING COUNT(hd.ma_nhan_vien) <= 3
 ORDER BY hd.ma_nhan_vien;
+
+
