@@ -3,109 +3,109 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
+
   <style>
-    body{
-      font-family: Arial;
-    }
-    #menu-header, #footer{
-      height: 30px;
+    * {
+      box-sizing: border-box;
       padding: 0;
       margin: 0;
-      background-color: black;
-      border: 1px solid;
     }
-    #menu-header ul,a{
-      font-size: 10px;
-      padding:0;
-      margin:0;
-    }
-    #menu-header li{
-      position: relative;
-      float: left;
-      list-style: none;
-      padding:0;
-      margin:0;
-    }
-    .header:hover{
-      background-color: dimgray;
-      color: white;
-    }
-    .header{
-      width: 50px;
-      height: 30px;
-      display: block;
-      text-decoration: none;
-      text-align: center;
-      line-height: 30px;
-      background-color: black;
-      color: darkgray;
-    }
-    span.header{
-      font-size: 15px;
-    }
-    #menu-header a{
-      float: right;
-    }
-    #sidebar, #sidebar1{
-      background-color: darkgray;
-      height: 430px;
-      width: 15%;
-    }
-    #sidebar{
+    [class*="col-"] {
       float: left;
     }
-    #sidebar1{
-      float: right;
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+    html {
+      font-family: "Lucida Sans", sans-serif;
     }
-    #sidebar a{
-      text-decoration: none;
-      padding-left: 35px;
+
+    .header {
+      width: 100%;
+      background-color: #1c1c1c;
+      height: 40px;
+      display: flex;
+      align-items: center;
     }
-    #sidebar1 a{
-      text-align: center;
-      display: block;
-      border: 1px solid grey;
-      padding: 10px;
-      margin: 10px;
-      background-color: darkgray;
-      color: black;
-      text-decoration: none;
+
+    .header ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
     }
-    #main{
-      padding: 0px 100px;
-      margin: 10px;
+    .header li {
+      width: 90px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 10px;
+      padding: 0 8px;
+      background-color: #1c1c1c;
+      color: #ffffff;
+    }
+    .header li:hover {
+      background-color: black;
+    }
+    .content{
+      text-align: justify;
+      text-indent: 5%;
+      padding: 20px 10px;
+    }
+    .sidebar{
+      padding: 20px 20px;
+      background-color: gray;
       height: 400px;
     }
-    #footer{
-      font-size: 10px;
+    .ads{
+      background-color: gray;
+      height: 400px;
+      padding: 20px 20px;
+    }
+    .footer{
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      background-color: #1c1c1c;
       color: white;
-      text-align: center;
     }
   </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
 </head>
 <body>
-<div id="menu-header">
+
+<div class="col-12 header">
   <ul>
-    <li><span class="header">Logo</span></li>
-    <li><a class="header" href="#">Home</a></li>
-    <li><a class="header" href="#">About</a></li>
-    <li><a class="header" href="#">Projects</a></li>
-    <li><a class="header" href="#">Contact</a></li>
+    <li>Logo</li>
+    <li>Home</li>
+    <li>About</li>
+    <li>Projects</li>
+    <li>Contact</li>
   </ul>
-  <a class="header" href="#"><i class="fa-solid fa-right-to-bracket"></i>Login</a>
+  <ul style="margin-left: auto">
+    <li>Logout</li>
+  </ul>
 </div>
-<div id="sidebar">
-  <a href="#">Link</a><br>
-  <a href="#">Link</a><br>
-  <a href="#">Link</a>
-</div>
-<div id="sidebar1">
-  <a href="#">ADS</a><br>
-  <a href="#">ADS</a>
-</div>
-<div id="main">
-  <h2>Welcome</h2>
+<div>
+  <div class="col-2 sidebar">
+    <ul>
+      <li>Link</li>
+      <li>Link</li>
+      <li>Link</li>
+    </ul>
+  </div>
+  <div class="col-8 content">
+    <h1>Welcome</h1>
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut commodi dicta dignissimos, dolorem eius eveniet
     explicabo,
     laudantium nobis officiis qui rem repellendus sunt veritatis. At debitis dolorem fugit in libero nisi
@@ -117,14 +117,15 @@
     nostrum obcaecati quasi quibusdam repudiandae sapiente sed sunt ut voluptas voluptate voluptatibus? Alias
     atque eveniet illum ipsa
     itaque similique sunt ullam! Adipisci consectetur cum cumque eum fugit modi nulla reiciendis sapiente
-    suscipit veniam?
-  </p>
-  <hr>
-  <h4>Test</h4>
-  <p>Lorem ipsum...</p>
+    suscipit veniam?</p>
+  </div>
+  <div class="col-2 ads">
+    <h1>ADS</h1>
+  </div>
 </div>
-<div id="footer">
+<div class="col-12 footer">
   <p>Footer Text</p>
 </div>
+
 </body>
 </html>
