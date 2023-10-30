@@ -1,6 +1,6 @@
 
 body{
-    background-image: url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fvn.lovepik.com%2Fimage-605660020%2Fcomic-wind-orange-hand-drawn-start-season-banner-background.html&psig=AOvVaw1z2VTmukGzgPo7oIe-JoBO&ust=1698480848092000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCODIiK_klYIDFQAAAAAdAAAAABAE");
+    background-image: url("https://i.pinimg.com/564x/e7/22/ab/e722abbdaa4cdd319a44134b502fea7c.jpg");
     background-size: cover;
     background-position-y: -80px;
     font-size: 16px;
@@ -13,7 +13,7 @@ body{
 }
 #form-login{
     max-width: 400px;
-    background: rgba(0, 0, 0 , 0.8);
+    /*background: rgba(0, 0, 0 , 0.8);*/
     flex-grow: 1;
     padding: 30px 30px 40px;
     box-shadow: 0px 0px 17px 2px rgba(255, 255, 255, 0.8);
