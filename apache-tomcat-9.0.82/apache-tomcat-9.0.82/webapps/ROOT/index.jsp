@@ -7,7 +7,7 @@
 </head>
 <body>
 <br/>
-<a href="/products?action=create">Hiển Thị</a>
+<a href="/products?action=create">Thêm sản phẩm</a>
 <table cellpadding="5px" width="50%" border="1px" align="center">
   <thead>
   <tr>
