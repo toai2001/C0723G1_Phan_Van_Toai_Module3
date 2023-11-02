@@ -4,20 +4,17 @@ import com.example.bai1.Repo.IUserRepo;
 import com.example.bai1.model.User;
 import com.example.bai1.utils.BaseRepository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserRepoImpl implements IUserRepo {
     private static final String INSERT_USERS_SQL = "INSERT INTO users (name, email, country) VALUES (?, ?, ?);";
     private static final String SELECT_USER_BY_ID = "select id,name,email,country from users where id =?";
-    private static final String SELECT_ALL_USERS = "select * from users order by name";
-    private static final String DELETE_USERS_SQL = "delete from users where id = ?;";
+    private static final String SELECT_ALL_USERS = " call display();";
+    private static final String DELETE_USERS_SQL = "call delete_by_id(?)";
     private static final String UPDATE_USERS_SQL = "update users set name = ?,email= ?, country =? where id = ?;";
-    private static final String SEARCH_BY_COUNTRY = "select * from users where country=?;";
+    private static final String SEARCH_BY_COUNTRY = "select * from users where  country like ?;";
 
     public UserRepoImpl() {
     }
@@ -25,7 +22,7 @@ public class UserRepoImpl implements IUserRepo {
     public List<User> searchByCountry(String country) {
         BaseRepository baseRepository = new BaseRepository();
         List<User> userList = new ArrayList<>();
-        User user= null;
+        User user = null;
         try {
             Connection connection = baseRepository.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_BY_COUNTRY);
@@ -89,11 +86,11 @@ public class UserRepoImpl implements IUserRepo {
     public List<User> selectAllUsers() {
         BaseRepository baseRepository = new BaseRepository();
         List<User> users = new ArrayList<>();
-        try (Connection connection = baseRepository.getConnection();
+        try (Connection connection = baseRepository.getConnection()){
 
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS);) {
-            System.out.println(preparedStatement);
-            ResultSet rs = preparedStatement.executeQuery();
+             CallableStatement callableStatement = connection.prepareCall(SELECT_ALL_USERS);
+            System.out.println(callableStatement);
+            ResultSet rs = callableStatement.executeQuery();
 
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -107,14 +104,14 @@ public class UserRepoImpl implements IUserRepo {
         }
         return users;
     }
-
     public boolean deleteUser(int id) throws SQLException {
         boolean rowDeleted;
         BaseRepository baseRepository = new BaseRepository();
 
-        try (Connection connection = baseRepository.getConnection(); PreparedStatement statement = connection.prepareStatement(DELETE_USERS_SQL);) {
-            statement.setInt(1, id);
-            rowDeleted = statement.executeUpdate() > 0;
+        try (Connection connection = baseRepository.getConnection();
+             CallableStatement callableStatement = connection.prepareCall(DELETE_USERS_SQL);) {
+            callableStatement.setInt(1, id);
+            rowDeleted = callableStatement.executeUpdate() > 0;
         }
         return rowDeleted;
     }
@@ -132,6 +129,7 @@ public class UserRepoImpl implements IUserRepo {
         }
         return rowUpdated;
     }
+
     private void printSQLException(SQLException ex) {
         for (Throwable e : ex) {
             if (e instanceof SQLException) {
