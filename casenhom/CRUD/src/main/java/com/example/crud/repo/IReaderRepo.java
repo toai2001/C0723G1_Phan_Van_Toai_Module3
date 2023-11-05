@@ -9,5 +9,7 @@ public interface IReaderRepo {
     Reader findById(int idReader);
     boolean removeReader(int id);
     void add(Reader reader);
+    boolean updateReader(int id, Reader reader);
+
 
 }

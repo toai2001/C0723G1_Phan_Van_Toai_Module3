@@ -6,8 +6,13 @@ import java.util.List;
 
 public interface IReaderService {
     List<Reader> listReadable();
+
     Reader findById(int idReader);
+
     boolean removeReader(int id);
+
     void add(Reader reader);
+
+    boolean updateReader(int id, Reader reader);
 
 }

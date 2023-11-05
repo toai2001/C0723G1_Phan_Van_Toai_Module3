@@ -29,4 +29,9 @@ public class ReaderServiceImpl implements IReaderService {
     public void add(Reader reader) {
         iReaderRepo.add(reader);
     }
+
+    @Override
+    public boolean updateReader(int id, Reader reader) {
+        return iReaderRepo.updateReader(id, reader);
+    }
 }

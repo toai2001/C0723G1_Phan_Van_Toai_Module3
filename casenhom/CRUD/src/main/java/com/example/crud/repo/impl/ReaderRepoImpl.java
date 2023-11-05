@@ -15,7 +15,8 @@ public class ReaderRepoImpl implements IReaderRepo {
     private static final String SELECT_ALL = "SELECT * FROM reader;";
     private static final String FIND_BY_ID = "SELECT * FROM reader WHERE reader_id = ?;";
     private static final String REMOVE_READER_BY_ID = "DELETE FROM reader WHERE reader_id = ?;";
-    private final static String READER = "INSERT INTO reader (reader_id, reader_name, address, citizen_id, date_of_birth, email , phone_number, image,id_account) VALUES (?,?,?,?,?,?,?,?,?);\";\n";
+    private final static String READER_INSERT = "INSERT INTO reader (reader_id, reader_name, address, citizen_id, date_of_birth, email , phone_number, image,id_account) VALUES (?,?,?,?,?,?,?,?,?);\";\n";
+    private final static String UPDATE_READER = "UPDATE reader SET reader_name = ?, address = ?, email =?, phone_number =?, image =? WHERE reader_id = ?;";
 
     @Override
     public List<Reader> listReadable() {
@@ -76,14 +77,14 @@ public class ReaderRepoImpl implements IReaderRepo {
 
     @Override
     public boolean removeReader(int idReader) {
-        if (findById(idReader) ==  null) {
+        if (findById(idReader) == null) {
             return false;
         }
         Baserepository baserepository = new Baserepository();
         Connection connection = baserepository.getConnection();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(REMOVE_READER_BY_ID);
-            preparedStatement.setInt(1,idReader);
+            preparedStatement.setInt(1, idReader);
             preparedStatement.executeUpdate();
             preparedStatement.close();
             connection.close();
@@ -96,5 +97,30 @@ public class ReaderRepoImpl implements IReaderRepo {
     @Override
     public void add(Reader reader) {
 
+    }
+
+    @Override
+    public boolean updateReader(int id, Reader reader) {
+        if (findById(id) == null) {
+            return false;
+        } else {
+            Baserepository baserepository = new Baserepository();
+            Connection connection = baserepository.getConnection();
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_READER);
+                preparedStatement.setString(1, reader.getReaderName());
+                preparedStatement.setString(2, reader.getAddress());
+                preparedStatement.setString(3, reader.getEmail());
+                preparedStatement.setString(4, reader.getPhoneNumber());
+                preparedStatement.setString(5, reader.getImage());
+                preparedStatement.setInt(6, id);
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
+                connection.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return true;
     }
 }
