@@ -1,0 +1,65 @@
+html {
+    font-family: Tahoma, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #EBEBEB;
+}
+
+.header {
+    background-color: #721799;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.log-in a {
+    color: white;
+}
+
+.log-in a:hover {
+    color: black;
+    text-decoration: underline;
+}
+
+.navbar-nav li {
+    margin: 0 10vh;
+    padding: 0;
+}
+
+.navbar-nav li:hover {
+    background-color: #b8c7d0;
+}
+
+.navbar-nav li:hover a {
+    color: #721799;
+}
+
+.container h3 {
+    padding: 1%;
+    color: #074091;
+}
+
+button{
+    border-radius: 10px;
+}
+
+.btn-create-search{
+    width: 100px;
+    margin: 0 10vh;
+}
